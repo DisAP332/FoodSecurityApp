@@ -1,6 +1,6 @@
 import { useReducer } from "react";
-import { locationReducer } from "../state/location/locationReducer";
-import type { LocationState } from "../state/location/types";
+import { LocationState } from "./Location.types";
+import { locationReducer } from "./Location.reducer";
 
 const initialState: LocationState = {
   mode: undefined,

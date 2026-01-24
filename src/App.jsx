@@ -1,5 +1,5 @@
-import { Location } from "./components/questions/Location";
-import { useLocation } from "./hooks/useLocation";
+import { useLocation } from "./features/location/state/useLocation.ts";
+import { Location } from "./features/location/ui/Location.tsx";
 
 function App() {
   const location = useLocation();

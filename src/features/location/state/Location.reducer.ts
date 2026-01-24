@@ -1,7 +1,7 @@
 // dictates rules for state changes related to location data
 
-import type { LocationState } from "./types";
-import type { LocationAction } from "./actions";
+import type { LocationAction } from "./Location.actions";
+import { LocationState } from "./Location.types";
 
 export function locationReducer(
   state: LocationState,

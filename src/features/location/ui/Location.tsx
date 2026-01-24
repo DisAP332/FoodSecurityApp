@@ -1,9 +1,8 @@
-import { QuestionCard } from "../questionFormat/QuestionCard";
-
+import { QuestionCard } from "../../../components/questionFormat/QuestionCard";
 import {
   CINCINNATI_ZIP_CODES,
   type CincinnatiZipCode,
-} from "../../data/cincinnatiZipCodes";
+} from "../data/ZipCodes.data";
 
 export type LocationMode = "zip" | "browser" | "address";
 
