@@ -23,5 +23,3 @@ export const CINCINNATI_ZIP_CENTROIDS: Record<
     return [zip, { lat: rec.latitude, lng: rec.longitude }] as const;
   }),
 ) as Record<CincinnatiZipCode, { lat: number; lng: number }>;
-
-console.log(CINCINNATI_ZIP_CENTROIDS);

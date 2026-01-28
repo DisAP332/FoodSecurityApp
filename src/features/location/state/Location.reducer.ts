@@ -11,19 +11,20 @@ export function locationReducer(
     case "SET_MODE":
       return {
         mode: action.mode,
-        zipCode: undefined,
-        address: "",
-        isValid: false,
+        zip: state.zip,
+        address: state.address,
+        browser: state.browser,
+        hasProofOfResidency: state.hasProofOfResidency,
       };
 
     case "SET_ZIP":
       return {
         ...state,
-        zipCode: action.zipCode,
+        zip: action.zipCode,
         isValid: true,
       };
 
-    case "SET_ADDRESS":
+    case "SET_ADDRESS_QUERY":
       return {
         ...state,
         address: action.address,
