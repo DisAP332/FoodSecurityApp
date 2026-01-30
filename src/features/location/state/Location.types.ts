@@ -6,7 +6,7 @@ import type { CincinnatiZipCode } from "../data/ZipCodes.data";
 export type LocationMode = "zip" | "address" | "browser";
 
 export type ZipState = {
-  zipCode?: CincinnatiZipCode;
+  zipCode?: CincinnatiZipCode | null;
   lat: number | null;
   lng: number | null;
 };
@@ -23,6 +23,7 @@ export type BrowserState = {
   lat: number | null;
   lng: number | null;
   zipCode: CincinnatiZipCode | null;
+  error: string | null;
 };
 
 // the location state structure

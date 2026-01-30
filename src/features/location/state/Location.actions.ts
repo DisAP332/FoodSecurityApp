@@ -1,7 +1,7 @@
 // event actions for location data management
 
 import type { CincinnatiZipCode } from "../data/ZipCodes.data";
-import { LocationMode } from "./Location.types";
+import type { LocationMode } from "./Location.types";
 
 export type LocationAction =
   | { type: "SET_MODE"; mode: LocationMode }
@@ -14,4 +14,7 @@ export type LocationAction =
       lng: number;
       zipCode: CincinnatiZipCode | null;
     }
-  | { type: "SET_PROOF_OF_RESIDENCY"; value: boolean };
+  | { type: "SET_PROOF_OF_RESIDENCY"; value: boolean }
+  | { type: "SET_BROWSER_COORDS"; lat: number; lng: number }
+  | { type: "SET_BROWSER_ZIP"; zipCode: CincinnatiZipCode | null }
+  | { type: "SET_BROWSER_ERROR"; message: string | null };

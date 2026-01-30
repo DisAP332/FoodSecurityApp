@@ -21,6 +21,7 @@ const initialState: LocationState = {
     lat: null,
     lng: null,
     zipCode: null,
+    error: null,
   },
   hasProofOfResidency: null,
 };
@@ -31,10 +32,13 @@ export function useLocation() {
   return {
     state,
     setMode: (mode: LocationMode) => dispatch({ type: "SET_MODE", mode }),
+
     setZipCode: (zipCode: CincinnatiZipCode) =>
       dispatch({ type: "SET_ZIP", zipCode }),
+
     setAddressQuery: (query: string) =>
       dispatch({ type: "SET_ADDRESS_QUERY", query }),
+
     setAddressSelected: (payload: {
       label: string;
       lat: number;
@@ -48,7 +52,17 @@ export function useLocation() {
         lng: payload.lng,
         zipCode: payload.zipCode,
       }),
+
     setProofOfResidency: (value: boolean) =>
       dispatch({ type: "SET_PROOF_OF_RESIDENCY", value }),
+
+    setBrowserCoords: (lat: number, lng: number) =>
+      dispatch({ type: "SET_BROWSER_COORDS", lat, lng }),
+
+    setBrowserZip: (zipCode: CincinnatiZipCode | null) =>
+      dispatch({ type: "SET_BROWSER_ZIP", zipCode }),
+
+    setBrowserError: (message: string | null) =>
+      dispatch({ type: "SET_BROWSER_ERROR", message }),
   };
 }

@@ -25,7 +25,7 @@ export function locationReducer(
           lng: null,
           zipCode: null,
         },
-        browser: { lat: null, lng: null, zipCode: null },
+        browser: { lat: null, lng: null, zipCode: null, error: null },
       };
     }
     case "SET_ZIP": {
@@ -62,6 +62,36 @@ export function locationReducer(
         },
       };
     }
+
+    case "SET_BROWSER_COORDS":
+      return {
+        ...state,
+        browser: {
+          ...state.browser,
+          lat: action.lat,
+          lng: action.lng,
+          zipCode: null,
+          error: null,
+        },
+      };
+
+    case "SET_BROWSER_ZIP":
+      return {
+        ...state,
+        browser: {
+          ...state.browser,
+          zipCode: action.zipCode,
+        },
+      };
+
+    case "SET_BROWSER_ERROR":
+      return {
+        ...state,
+        browser: {
+          ...state.browser,
+          error: action.message,
+        },
+      };
 
     case "SET_PROOF_OF_RESIDENCY": {
       return {

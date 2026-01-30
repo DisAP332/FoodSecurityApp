@@ -60,7 +60,11 @@ export function validateLocation(state: LocationState): ValidationResult {
   }
 
   if (state.mode === "browser") {
-    if (state.browser.lat === null || state.browser.lng === null) {
+    if (
+      state.browser.lat === null ||
+      state.browser.lng === null ||
+      state.browser.zipCode !== null
+    ) {
       errors.push({
         field: "address",
         message: "Please allow location access or choose another option.",

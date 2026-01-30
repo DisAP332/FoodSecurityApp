@@ -4,10 +4,20 @@ import {
   type CincinnatiZipCode,
 } from "../data/ZipCodes.data";
 import { useLocation } from "../state/useLocation";
+import { AddressAutocomplete } from "./AddressAutocomplete";
 
 export function Location() {
-  const { state, setMode, setZipCode, setAddressQuery, setProofOfResidency } =
-    useLocation();
+  const {
+    state,
+    setMode,
+    setZipCode,
+    setAddressQuery,
+    setAddressSelected,
+    setBrowserCoords,
+    setBrowserZip,
+    setBrowserError,
+    setProofOfResidency,
+  } = useLocation();
 
   const mode = state.mode;
   return (
@@ -82,9 +92,66 @@ export function Location() {
         )}
 
         {mode === "browser" && (
-          <div className="rounded-md border p-3 text-sm text-slate-600">
-            We will ask for permission to use your device’s location in a later
-            step.
+          <div className="space-y-3 rounded-md border p-3">
+            <p className="text-sm text-slate-700">
+              Click below to request your device location. We’ll convert it to a
+              Cincinnati ZIP code.
+            </p>
+
+            <button
+              type="button"
+              className="rounded-md border px-3 py-2 text-sm"
+              onClick={async () => {
+                try {
+                  setBrowserError(null);
+
+                  const { requestBrowserLocation } =
+                    await import("../services/geolocation");
+                  const { reverseZip } =
+                    await import("../services/mapboxClient");
+                  const { toCincinnatiZipCode } =
+                    await import("../data/toCincinnatiZipCode");
+
+                  const point = await requestBrowserLocation();
+                  setBrowserCoords(point.lat, point.lng);
+
+                  const zipStr = await reverseZip({
+                    lat: point.lat,
+                    lng: point.lng,
+                  });
+                  const zipCode = zipStr ? toCincinnatiZipCode(zipStr) : null;
+
+                  setBrowserZip(zipCode);
+                } catch (e) {
+                  setBrowserError(
+                    e instanceof Error ? e.message : "Failed to get location.",
+                  );
+                }
+              }}
+            >
+              Use my current location
+            </button>
+
+            {state.browser.error && (
+              <p className="text-sm text-red-600">{state.browser.error}</p>
+            )}
+
+            {state.browser.lat !== null && state.browser.lng !== null && (
+              <p className="text-xs text-slate-600">
+                lat/lng: {state.browser.lat.toFixed(5)},{" "}
+                {state.browser.lng.toFixed(5)} | ZIP:{" "}
+                {state.browser.zipCode ?? "not in Cincinnati"}
+              </p>
+            )}
+
+            {state.browser.lat !== null &&
+              state.browser.lng !== null &&
+              state.browser.zipCode === null && (
+                <p className="text-sm text-red-600">
+                  Your location appears to be outside Cincinnati city limits
+                  (for now).
+                </p>
+              )}
           </div>
         )}
 
@@ -94,18 +161,26 @@ export function Location() {
               Enter your address
             </label>
 
-            <input
-              type="text"
-              className="w-full rounded-md border p-2"
-              placeholder="Street, City, State"
-              value={state.address.query}
-              onChange={(e) => setAddressQuery(e.target.value)}
+            <AddressAutocomplete
+              query={state.address.query}
+              onQueryChange={setAddressQuery}
+              onSelected={(p) => setAddressSelected(p)}
             />
 
-            {/* Later: show suggestion dropdown + selection */}
-            {state.address.selectedLabel && (
+            {/* Cincinnati guard feedback */}
+            {state.address.selectedLabel && state.address.zipCode === null && (
+              <p className="text-sm text-red-600">
+                This address appears to be outside Cincinnati city limits (for
+                now).
+              </p>
+            )}
+
+            {/* Debug: show derived geo (remove later) */}
+            {state.address.lat !== null && state.address.lng !== null && (
               <p className="text-xs text-slate-600">
-                Selected: {state.address.selectedLabel}
+                lat/lng: {state.address.lat.toFixed(5)},{" "}
+                {state.address.lng.toFixed(5)} | ZIP:{" "}
+                {state.address.zipCode ?? "not in Cincinnati"}
               </p>
             )}
           </div>
