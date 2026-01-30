@@ -2,6 +2,7 @@
 
 import type { CincinnatiZipCode } from "../data/ZipCodes.data";
 
+// states to be nested in LocationState
 export type LocationMode = "zip" | "address" | "browser";
 
 export type ZipState = {
@@ -15,15 +16,16 @@ export type AddressState = {
   selectedLabel: string | null; // what they chose from suggestions
   lat: number | null;
   lng: number | null;
-  zipCode: string | null;
+  zipCode: CincinnatiZipCode | null;
 };
 
 export type BrowserState = {
   lat: number | null;
   lng: number | null;
-  zipCode: string | null;
+  zipCode: CincinnatiZipCode | null;
 };
 
+// the location state structure
 export type LocationState = {
   mode?: LocationMode;
   zip: ZipState;

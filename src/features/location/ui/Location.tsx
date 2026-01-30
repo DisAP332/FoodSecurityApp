@@ -3,27 +3,13 @@ import {
   CINCINNATI_ZIP_CODES,
   type CincinnatiZipCode,
 } from "../data/ZipCodes.data";
+import { useLocation } from "../state/useLocation";
 
-export type LocationMode = "zip" | "browser" | "address";
+export function Location() {
+  const { state, setMode, setZipCode, setAddressQuery, setProofOfResidency } =
+    useLocation();
 
-type LocationProps = {
-  mode?: LocationMode;
-  zipCode?: CincinnatiZipCode;
-  address?: string;
-
-  onModeChange?: (mode: LocationMode) => void;
-  onZipChange?: (zip: CincinnatiZipCode) => void;
-  onAddressChange?: (address: string) => void;
-};
-
-export function Location({
-  mode,
-  zipCode,
-  address,
-  onModeChange,
-  onZipChange,
-  onAddressChange,
-}: LocationProps) {
+  const mode = state.mode;
   return (
     <QuestionCard
       title="How would you like to share your location?"
@@ -38,7 +24,7 @@ export function Location({
             type="radio"
             name="location-mode"
             checked={mode === "zip"}
-            onChange={() => onModeChange?.("zip")}
+            onChange={() => setMode("zip")}
           />
           <span>Use ZIP code</span>
         </label>
@@ -48,7 +34,7 @@ export function Location({
             type="radio"
             name="location-mode"
             checked={mode === "browser"}
-            onChange={() => onModeChange?.("browser")}
+            onChange={() => setMode("browser")}
           />
           <span>Use my location</span>
         </label>
@@ -58,7 +44,7 @@ export function Location({
             type="radio"
             name="location-mode"
             checked={mode === "address"}
-            onChange={() => onModeChange?.("address")}
+            onChange={() => setMode("address")}
           />
           <span>Enter address</span>
         </label>
@@ -73,10 +59,8 @@ export function Location({
             </label>
             <select
               className="w-full rounded-md border p-2"
-              value={zipCode ?? ""}
-              onChange={(e) =>
-                onZipChange?.(e.target.value as CincinnatiZipCode)
-              }
+              value={state.zip.zipCode ?? ""}
+              onChange={(e) => setZipCode(e.target.value as CincinnatiZipCode)}
             >
               <option value="" disabled>
                 Choose a ZIP code
@@ -87,6 +71,13 @@ export function Location({
                 </option>
               ))}
             </select>
+            {/* Debug readout */}
+            {state.zip.lat !== null && state.zip.lng !== null && (
+              <p className="text-xs text-slate-600">
+                Using ZIP centroid: {state.zip.lat.toFixed(4)},{" "}
+                {state.zip.lng.toFixed(4)}
+              </p>
+            )}
           </div>
         )}
 
@@ -102,14 +93,40 @@ export function Location({
             <label className="block text-sm font-medium">
               Enter your address
             </label>
+
             <input
               type="text"
               className="w-full rounded-md border p-2"
               placeholder="Street, City, State"
-              value={address ?? ""}
-              onChange={(e) => onAddressChange?.(e.target.value)}
+              value={state.address.query}
+              onChange={(e) => setAddressQuery(e.target.value)}
             />
+
+            {/* Later: show suggestion dropdown + selection */}
+            {state.address.selectedLabel && (
+              <p className="text-xs text-slate-600">
+                Selected: {state.address.selectedLabel}
+              </p>
+            )}
           </div>
+        )}
+      </div>
+
+      {/* Proof of residency (since you said it's needed) */}
+      <div className="mt-6">
+        <label className="flex items-center gap-3">
+          <input
+            type="checkbox"
+            checked={state.hasProofOfResidency ?? false}
+            onChange={(e) => setProofOfResidency(e.target.checked)}
+          />
+          <span>I have proof of Cincinnati residency</span>
+        </label>
+
+        {state.hasProofOfResidency === null && (
+          <p className="mt-1 text-xs text-slate-600">
+            Required for eligibility checks.
+          </p>
         )}
       </div>
     </QuestionCard>

@@ -12,5 +12,6 @@ export type LocationAction =
       label: string;
       lat: number;
       lng: number;
+      zipCode: CincinnatiZipCode | null;
     }
-  | { type: "CLEAR_ADDRESS_SELECTED" };
+  | { type: "SET_PROOF_OF_RESIDENCY"; value: boolean };

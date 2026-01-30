@@ -1,10 +1,10 @@
 //Convert to normalized shape of data
 
 import type { CincinnatiZipCode } from "../data/ZipCodes.data";
-import { LocationState } from "../state/Location.types";
+import type { LocationState } from "../state/Location.types";
 
 export type NormalizedLocation = {
-  zipCode?: CincinnatiZipCode;
+  zipCode: CincinnatiZipCode | null;
   lat: number | null;
   lng: number | null;
   hasProofOfResidency: boolean | null;
@@ -13,14 +13,14 @@ export type NormalizedLocation = {
 
 export function normalizeLocation(state: LocationState): NormalizedLocation {
   // placeholder for proof of residency (to be added)
-  const hasProofOfResidency: boolean | null = null;
+  const hasProofOfResidency: boolean | null = state.hasProofOfResidency;
 
   if (state.mode === "zip") {
     return {
       source: "zip",
-      zipCode: state.zipCode,
-      lat: null,
-      lng: null,
+      zipCode: state.zip.zipCode ?? null,
+      lat: state.zip.lat,
+      lng: state.zip.lng,
       hasProofOfResidency,
     };
   }
@@ -28,18 +28,18 @@ export function normalizeLocation(state: LocationState): NormalizedLocation {
   if (state.mode === "browser") {
     return {
       source: "browser",
-      zipCode: undefined,
-      lat: null,
-      lng: null,
+      zipCode: state.browser.zipCode,
+      lat: state.browser.lat,
+      lng: state.browser.lng,
       hasProofOfResidency,
     };
   }
 
   return {
     source: "address",
-    zipCode: undefined,
-    lat: null,
-    lng: null,
+    zipCode: state.address.zipCode as CincinnatiZipCode | null,
+    lat: state.address.lat,
+    lng: state.address.lng,
     hasProofOfResidency,
   };
 }
