@@ -32,5 +32,5 @@ export type LocationState = {
   zip: ZipState;
   address: AddressState;
   browser: BrowserState;
-  hasProofOfResidency: boolean | null;
+  hasProofOfResidency: boolean;
 };

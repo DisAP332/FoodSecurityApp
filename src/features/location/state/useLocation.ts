@@ -23,7 +23,7 @@ const initialState: LocationState = {
     zipCode: null,
     error: null,
   },
-  hasProofOfResidency: null,
+  hasProofOfResidency: false,
 };
 
 export function useLocation() {

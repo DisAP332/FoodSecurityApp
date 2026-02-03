@@ -1,4 +1,4 @@
-import type { Pantry } from "../features/pantries/pantry.types";
+import type { Pantry } from "../pantries/types/pantry.types";
 
 export function buildGuideMd(pantries: Pantry[], userZip: string) {
   const lines: string[] = [];

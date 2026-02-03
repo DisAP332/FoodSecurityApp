@@ -24,7 +24,7 @@ export function validateLocation(state: LocationState): ValidationResult {
   }
 
   if (state.mode === "zip") {
-    if (state.zip) {
+    if (!state.zip.zipCode) {
       errors.push({
         field: "zipCode",
         message: "Please select valid Cincinnati-area zip code.",
@@ -70,14 +70,6 @@ export function validateLocation(state: LocationState): ValidationResult {
         message: "Please allow location access or choose another option.",
       });
     }
-  }
-
-  // Proof-of-residency: you said you'll use this for eligibility.
-  if (state.hasProofOfResidency === null) {
-    errors.push({
-      field: "proof",
-      message: "Please indicate whether you have proof of residency.",
-    });
   }
 
   return { valid: errors.length === 0, errors };

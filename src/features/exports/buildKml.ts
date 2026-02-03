@@ -1,4 +1,4 @@
-import type { Pantry } from "../features/pantries/pantry.types";
+import type { Pantry } from "../pantries/types/pantry.types";
 
 function esc(s: string) {
   return s

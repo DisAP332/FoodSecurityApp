@@ -3,7 +3,7 @@ import type {
   ServiceSchedule,
   Weekday,
   NthInMonth,
-} from "../features/pantries/pantry.types";
+} from "../pantries/types/pantry.types";
 
 /** Utilities */
 const pad = (n: number) => String(n).padStart(2, "0");

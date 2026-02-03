@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { PANTRIES } from "./pantries.data";
+import { PANTRIES } from "../data/pantries.data";
 import { geocodePantries, downloadJson } from "./geocodePantries";
 
 export function PantryGeocodeTool() {
