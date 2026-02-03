@@ -1,5 +1,6 @@
 import { useLocation } from "./features/location/state/useLocation.ts";
 import { Location } from "./features/location/ui/Location.tsx";
+import { PantryGeocodeTool } from "./features/pantries/PantryGeocodeTool.tsx";
 
 function App() {
   const location = useLocation();
@@ -23,6 +24,7 @@ function App() {
       >
         Next
       </button>
+      <PantryGeocodeTool />
     </main>
   );
 }
