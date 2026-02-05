@@ -1,7 +1,7 @@
 import type { Pantry } from "../types/pantry.types";
 import { forwardGeocodeAddress } from "./mapboxForwardGeocode";
 
-const CINCINNATI_BBOX = "-84.692637,39.039554,-84.260417,39.310213"; // same bbox you used earlier
+const CINCINNATI_BBOX = "-84.692637,39.039554,-84.260417,39.310213"; 
 
 export async function geocodePantries(
   pantries: Pantry[],

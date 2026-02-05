@@ -1,59 +1,20 @@
-import { useState } from "react";
-import { LocationStep } from "./features/location/LocationStep";
-import { ExportsStep } from "./features/exports/ExportsStep";
-import { useQuestionnaire } from "./features/questionnaire/useQuestionnaire";
-
-type Step = "location" | "exports";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { Navbar } from "./components/layout/Navbar";
+import { FindPantriesPage } from "./features/questionnaire/FindPantriesPage";
+import { PantryEntryPage } from "./features/admin/pantry-entry/PantryEntryPage";
 
 export default function App() {
-  const { state, dispatch } = useQuestionnaire();
-  const [step, setStep] = useState<Step>("location");
-
   return (
-    <main className="mx-auto max-w-md px-4 py-6">
-      {step === "location" && (
-        <LocationStep onNext={() => setStep("exports")} dispatch={dispatch} />
-      )}
+    <div className="min-h-screen bg-slate-50">
+      <Navbar />
 
-      {step === "exports" && state.location && (
-        <ExportsStep
-          masterLocation={state.location}
-          onBack={() => setStep("location")}
-        />
-      )}
-    </main>
+      <Routes>
+        <Route path="/" element={<FindPantriesPage />} />
+        <Route path="/admin" element={<PantryEntryPage />} />
+
+        {/* optional: redirect any unknown route to home */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </div>
   );
 }
-
-// import { useLocation } from "./features/location/state/useLocation.ts";
-// import { Location } from "./features/location/ui/Location.tsx";
-// import { PantryGeocodeTool } from "./features/pantries/PantryGeocodeTool.tsx";
-
-// function App() {
-//   const location = useLocation();
-
-//   return (
-//     <main className="p-6 max-w-md mx-auto">
-//       <h1 className="text-xl font-bold mb-4">Food Security App</h1>
-
-//       <Location
-//         mode={location.state.mode}
-//         zipCode={location.state.zipCode}
-//         address={location.state.address}
-//         onModeChange={location.setMode}
-//         onZipChange={location.setZipCode}
-//         onAddressChange={location.setAddress}
-//       />
-
-//       <button
-//         disabled={!location.state.isValid}
-//         className="mt-6 w-full bg-black text-white p-3 disabled:opacity-50"
-//       >
-//         Next
-//       </button>
-//       <PantryGeocodeTool />
-//     </main>
-//   );
-// }
-
-// export default App;
