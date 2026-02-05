@@ -1,4 +1,5 @@
 import type { Pantry } from "../pantries/types/pantry.types";
+import { formatEligibility } from "../admin/pantry-entry/utils";
 
 function esc(s: string) {
   return s
@@ -27,7 +28,7 @@ export function buildKml(pantries: Pantry[], name = "Food Security Pantries") {
           p.addressLine,
           `${p.city}, ${p.state} ${p.zip}`,
           p.phone ? `Phone: ${p.phone}` : "",
-          p.eligibility ? `Eligibility: ${p.eligibility}` : "",
+          `Eligibility: ${formatEligibility(p.eligibility)}`,
           p.additionalServices
             ? `Additional services: ${p.additionalServices}`
             : "",

@@ -1,3 +1,4 @@
+import { formatEligibility } from "../admin/pantry-entry/utils";
 import type { Pantry } from "../pantries/types/pantry.types";
 
 export function buildGuideMd(pantries: Pantry[], userZip: string) {
@@ -23,7 +24,8 @@ export function buildGuideMd(pantries: Pantry[], userZip: string) {
     lines.push(`## ${p.name}`);
     lines.push(`**Address:** ${p.addressLine}, ${p.city}, ${p.state} ${p.zip}`);
     if (p.phone) lines.push(`**Phone:** ${p.phone}`);
-    if (p.eligibility) lines.push(`**Eligibility:** ${p.eligibility}`);
+    if (p.eligibility)
+      lines.push(`**Eligibility:** ${formatEligibility(p.eligibility)}`);
     if (p.additionalServices)
       lines.push(`**Additional services:** ${p.additionalServices}`);
     if (typeof p.lgbtVetted === "boolean") {

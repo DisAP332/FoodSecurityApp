@@ -1,4 +1,8 @@
-import type { Pantry, ServiceSchedule } from "./types";
+import type {
+  Pantry,
+  PantryEligibility,
+  ServiceSchedule,
+} from "../../pantries/types/pantry.types";
 
 export function uid(prefix = "p"): string {
   return `${prefix}_${crypto.randomUUID()}`;
@@ -14,6 +18,20 @@ export function downloadJson(filename: string, data: unknown) {
   a.download = filename;
   a.click();
   URL.revokeObjectURL(url);
+}
+
+export function formatEligibility(e: any): string {
+  if (!e) return "Eligibility: (missing)";
+  if (typeof e === "string") return e; // legacy
+
+  if (e.kind === "open_to_all") return "Open to all";
+  if (e.kind === "zip_restricted") {
+    const zipCodes = Array.isArray(e.zipCodes) ? e.zipCodes : [];
+    const zips = zipCodes.length ? zipCodes.join(", ") : "(none listed)";
+    return `ZIP restricted: ${zips}${e.needProofOfResidency ? " (proof required)" : ""}`;
+  }
+
+  return "Eligibility: (unknown)";
 }
 
 export function emptyService(): ServiceSchedule {
@@ -35,7 +53,7 @@ export function emptyPantry(): Pantry {
     zip: "",
     neighborhood: "",
     phone: "",
-    eligibility: "",
+    eligibility: { kind: "open_to_all" },
     additionalServices: "",
     website: "",
     services: [emptyService()],

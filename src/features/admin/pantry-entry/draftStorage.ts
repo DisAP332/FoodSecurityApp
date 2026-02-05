@@ -1,4 +1,4 @@
-import type { Pantry } from "./types";
+import type { Pantry } from "../../pantries/types/pantry.types";
 
 export const DRAFT_KEY = "food-security:pantry-entry-draft:v1";
 

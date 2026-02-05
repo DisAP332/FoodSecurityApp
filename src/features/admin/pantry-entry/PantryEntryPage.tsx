@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import type { Pantry } from "./types";
+import type { Pantry } from "../../pantries/types/pantry.types";
 import { emptyPantry, uid, downloadJson } from "./utils";
 import { loadDraft, saveDraft, clearDraft } from "./draftStorage";
 import { validatePantries } from "./validators";

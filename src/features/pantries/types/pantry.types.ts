@@ -35,6 +35,14 @@ export type ServiceSchedule = {
   notes?: string; // "Line closes at 1:30" etc.
 };
 
+export type PantryEligibility =
+  | { kind: "open_to_all" }
+  | {
+      kind: "zip_restricted";
+      zipCodes: string[]; // keep as string for now; later you can narrow to CincinnatiZipCode
+      needProofOfResidency: boolean;
+    };
+
 export type Pantry = {
   id: string;
   name: string;
@@ -46,8 +54,9 @@ export type Pantry = {
   neighborhood?: string;
 
   phone?: string;
-  eligibility?: string;
+  eligibility?: PantryEligibility;
   additionalServices?: string;
+  website?: string;
 
   services: ServiceSchedule[]; // <-- replaces hours
 

@@ -1,4 +1,4 @@
-import type { Pantry, ScheduleRule } from "./types";
+import type { Pantry, ScheduleRule } from "../../pantries/types/pantry.types";
 
 function isTimeHHMM(s: string): boolean {
   return /^([01]\d|2[0-3]):[0-5]\d$/.test(s);
@@ -36,6 +36,13 @@ export function validatePantries(pantries: Pantry[]): string[] {
         `"${p.name || p.id}": Must have at least one service schedule.`,
       );
       continue;
+    }
+    if (p.eligibility.kind === "zip_restricted") {
+      if (!p.eligibility.zipCodes.length) {
+        errs.push(
+          `"${p.name || p.id}": zip_restricted requires at least 1 ZIP.`,
+        );
+      }
     }
 
     p.services.forEach((s, si) => {

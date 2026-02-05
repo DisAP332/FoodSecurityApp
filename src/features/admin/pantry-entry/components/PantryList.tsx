@@ -1,5 +1,5 @@
 import React from "react";
-import type { Pantry } from "../types";
+import type { Pantry } from "../../../pantries/types/pantry.types";
 
 export function PantryList(props: {
   pantries: Pantry[];

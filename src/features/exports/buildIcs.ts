@@ -1,3 +1,4 @@
+import { formatEligibility } from "../admin/pantry-entry/utils";
 import type {
   Pantry,
   ServiceSchedule,
@@ -120,11 +121,29 @@ function isWithinWindow(d: Date, start: Date, end: Date) {
 
 function buildDescription(p: Pantry, s: ServiceSchedule) {
   const parts: string[] = [];
-  if (p.eligibility) parts.push(`Eligibility: ${p.eligibility}`);
+
+  const eligibilityText = formatEligibility((p as any).eligibility);
+  if (eligibilityText) parts.push(`Eligibility: ${eligibilityText}`);
+
   if (s.notes) parts.push(`Notes: ${s.notes}`);
   parts.push(`Schedule: ${s.scheduleText}`);
-  if (p.additionalServices)
+
+  if (p.additionalServices) {
     parts.push(`Additional services: ${p.additionalServices}`);
+  }
+
+  const e = (p as any).eligibility;
+  if (e && typeof e === "object" && e.kind === "zip_restricted") {
+    const zipCodes: string[] = Array.isArray(e.zipCodes) ? e.zipCodes : [];
+
+    if (e.needProofOfResidency) parts.push("!!Bring proof of residency!!");
+
+    if (zipCodes.length) {
+      parts.push("Eligible ZIP codes:");
+      for (const z of zipCodes) parts.push(`- ${z}`);
+    }
+  }
+
   return parts.join("\n");
 }
 

@@ -1,14 +1,23 @@
 import React from "react";
-import type { Pantry, ScheduleRule } from "../types";
+import type {
+  Pantry,
+  PantryEligibility,
+  ScheduleRule,
+} from "../../../pantries/types/pantry.types";
 import { Field } from "./Field";
 import { RuleEditor } from "./RuleEditor";
 import { emptyService } from "../utils";
+import { ZipCodeChipsEditor } from "./ZipCodeChipsEditor";
 
 export function PantryEditor(props: {
   pantry: Pantry;
   onChange: (patch: Partial<Pantry>) => void;
 }) {
   const { pantry, onChange } = props;
+
+  const eligibility = pantry.eligibility;
+  const zipEligibility =
+    eligibility.kind === "zip_restricted" ? eligibility : null;
 
   function updateService(idx: number, patch: any) {
     const nextServices = pantry.services.map((s, i) =>
@@ -150,15 +159,66 @@ export function PantryEditor(props: {
           </Field>
         </div>
 
-        <div className="grid gap-3">
-          <Field label="Eligibility (optional)">
-            <textarea
-              className="min-h-[70px] w-full rounded-md border p-2"
-              value={pantry.eligibility ?? ""}
-              onChange={(e) => onChange({ eligibility: e.target.value })}
-            />
-          </Field>
+        <Field label="Eligibility">
+          <select
+            className="w-full rounded-md border p-2"
+            value={pantry.eligibility.kind}
+            onChange={(e) => {
+              const kind = e.target.value as PantryEligibility["kind"];
+              onChange({
+                eligibility:
+                  kind === "open_to_all"
+                    ? { kind: "open_to_all" }
+                    : {
+                        kind: "zip_restricted",
+                        zipCodes: [],
+                        needProofOfResidency: false,
+                      },
+              });
+            }}
+          >
+            <option value="open_to_all">Open to all</option>
+            <option value="zip_restricted">ZIP code restricted</option>
+          </select>
+        </Field>
 
+        {zipEligibility && (
+          <div className="space-y-2 rounded-md border p-3">
+            <div className="text-xs font-medium text-slate-700">
+              Allowed ZIP codes
+            </div>
+
+            <ZipCodeChipsEditor
+              zipCodes={zipEligibility.zipCodes}
+              onChange={(zipCodes) =>
+                onChange({
+                  eligibility: {
+                    ...zipEligibility,
+                    zipCodes,
+                  },
+                })
+              }
+            />
+
+            <label className="flex items-center gap-2 text-sm">
+              <input
+                type="checkbox"
+                checked={zipEligibility.needProofOfResidency}
+                onChange={(e) =>
+                  onChange({
+                    eligibility: {
+                      ...zipEligibility,
+                      needProofOfResidency: e.target.checked,
+                    },
+                  })
+                }
+              />
+              Need proof of residency
+            </label>
+          </div>
+        )}
+
+        <div>
           <Field label="Additional services (optional)">
             <textarea
               className="min-h-[70px] w-full rounded-md border p-2"

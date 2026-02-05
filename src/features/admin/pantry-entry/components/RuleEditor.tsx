@@ -1,5 +1,9 @@
 import React from "react";
-import type { NthInMonth, ScheduleRule, Weekday } from "../types";
+import type {
+  NthInMonth,
+  ScheduleRule,
+  Weekday,
+} from "../../../pantries/types/pantry.types";
 import { Field } from "./Field";
 import { TimesEditor } from "./TimesEditor";
 

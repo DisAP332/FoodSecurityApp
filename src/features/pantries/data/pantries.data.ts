@@ -9,7 +9,9 @@ export const PANTRIES: Pantry[] = [
     state: "OH",
     zip: "45206",
     phone: "513-961-2100",
-    eligibility: "Anyone facing food insecurity",
+    eligibility: {
+      kind: "open_to_all",
+    },
     additionalServices:
       "Fresh free produce; payee program; health and wellness support; aid accessing government programs",
     services: [
@@ -40,7 +42,9 @@ export const PANTRIES: Pantry[] = [
     state: "OH",
     zip: "45202",
     phone: "513-621-6364",
-    eligibility: "Anyone facing food insecurity",
+    eligibility: {
+      kind: "open_to_all",
+    },
     additionalServices: "Social center and to-go meals",
     services: [
       {
@@ -70,7 +74,9 @@ export const PANTRIES: Pantry[] = [
     state: "OH",
     zip: "45206",
     phone: "513-961-1983",
-    eligibility: "Anyone facing food insecurity",
+    eligibility: {
+      kind: "open_to_all",
+    },
     services: [
       {
         label: "Choice Pantry",
@@ -143,8 +149,9 @@ export const PANTRIES: Pantry[] = [
     zip: "45219",
     neighborhood: "Clifton",
     phone: "513-751-8771",
-    eligibility:
-      "Residents of ZIP codes 45217, 45219, and 45220; and any military veterans in Hamilton County",
+    eligibility: {
+      kind: "open_to_all",
+    },
     services: [
       {
         label: "Pantry",
@@ -204,7 +211,9 @@ export const PANTRIES: Pantry[] = [
     zip: "45206",
     neighborhood: "Walnut Hills",
     phone: "513-961-0804",
-    eligibility: "Anyone facing food insecurity",
+    eligibility: {
+      kind: "open_to_all",
+    },
     services: [
       {
         label: "Pantry (Seniors only)",
@@ -252,7 +261,9 @@ export const PANTRIES: Pantry[] = [
     zip: "45223",
     neighborhood: "Northside",
     phone: "513-591-2246",
-    eligibility: "Anyone facing food insecurity",
+    eligibility: {
+      kind: "open_to_all",
+    },
     additionalServices:
       "Choice pantry and other necessities such as household and hygiene items, baby diapers, and menstrual products (within CAIN’s service area)",
     services: [

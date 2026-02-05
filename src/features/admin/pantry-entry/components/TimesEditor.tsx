@@ -1,5 +1,5 @@
 import React from "react";
-import type { TimeRange } from "../types";
+import type { TimeRange } from "../../../pantries/types/pantry.types";
 
 export function TimesEditor(props: {
   times: TimeRange[];
