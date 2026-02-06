@@ -34,6 +34,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.124514,
+    lng: -84.487378,
   },
   {
     id: "pantry_c4e0d127-9546-4988-b188-df1cc6c1a5de",
@@ -70,6 +72,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.129836,
+    lng: -84.475932,
   },
   {
     id: "pantry_1729db64-1ca4-4b9f-a164-668a3d3bda61",
@@ -151,6 +155,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: true,
+    lat: 39.125355,
+    lng: -84.48765,
   },
   {
     id: "pantry_889b4440-03fc-4019-926e-13a2a0c870f5",
@@ -184,6 +190,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.145251,
+    lng: -84.468064,
   },
   {
     id: "pantry_10933deb-abf6-48fc-9982-235136d888b2",
@@ -222,6 +230,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.113406,
+    lng: -84.516771,
   },
   {
     id: "pantry_70626a81-aabe-4a61-96d9-fa922a519329",
@@ -289,6 +299,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.12867,
+    lng: -84.513589,
   },
   {
     id: "pantry_06cc1b6e-c7fb-48f6-960e-013bf36b6f0d",
@@ -337,6 +349,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.119485,
+    lng: -84.533908,
   },
   {
     id: "pantry_1129f4a6-c346-49ea-a497-574b3af1072b",
@@ -387,6 +401,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.129169,
+    lng: -84.483758,
   },
   {
     id: "pantry_2d1a60c2-95c8-4199-994b-dcb941ae38e5",
@@ -421,6 +437,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.109066,
+    lng: -84.527056,
   },
   {
     id: "pantry_f7eb1f4d-5996-4ade-ab9c-41a6ec39c28b",
@@ -454,6 +472,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.112912,
+    lng: -84.513635,
   },
   {
     id: "pantry_53cfac3b-bd70-4625-9e66-f08bd7988412",
@@ -480,7 +500,7 @@ export const PANTRIES: Pantry[] = [
         "45247",
         "45248",
       ],
-      needProofOfResidency: false,
+      needProofOfResidency: true,
     },
     additionalServices: "",
     website: "https://afcofc.churchtrac.com/",
@@ -502,6 +522,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.09406,
+    lng: -84.60529,
   },
   {
     id: "pantry_009904c5-e0f0-4711-b77c-bca2d79c20c4",
@@ -550,6 +572,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: true,
+    lat: 39.164465,
+    lng: -84.540054,
   },
   {
     id: "pantry_0e388bbe-dd88-48ca-b558-3567a1d3ca80",
@@ -563,7 +587,7 @@ export const PANTRIES: Pantry[] = [
     eligibility: {
       kind: "zip_restricted",
       zipCodes: ["45214", "45225"],
-      needProofOfResidency: false,
+      needProofOfResidency: true,
     },
     additionalServices: "",
     website: "https://www.saint-leo.org/Food-Pantry",
@@ -586,6 +610,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.134138,
+    lng: -84.557355,
   },
   {
     id: "pantry_d864b0a0-297f-4dbd-addb-f98e3ddb0e15",
@@ -636,6 +662,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.19367,
+    lng: -84.57148,
   },
   {
     id: "pantry_d8ea0d50-d0ee-4e48-a0d8-f8b33c3fb32d",
@@ -649,7 +677,7 @@ export const PANTRIES: Pantry[] = [
     eligibility: {
       kind: "zip_restricted",
       zipCodes: ["45211", "45238"],
-      needProofOfResidency: false,
+      needProofOfResidency: true,
     },
     additionalServices: "",
     website: "https://www.foodpantries.org/li/westfed_food_pantry_45211",
@@ -688,6 +716,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.15449,
+    lng: -84.60249,
   },
   {
     id: "pantry_b3867a24-dfce-492e-99e5-b700fcd12600",
@@ -739,6 +769,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.17811,
+    lng: -84.60862,
   },
   {
     id: "pantry_2c8ded04-a871-450d-a99a-71735bf52f89",
@@ -790,6 +822,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.108365,
+    lng: -84.570988,
   },
   {
     id: "pantry_1356684e-894e-453d-81c4-88e9eab4a599",
@@ -844,6 +878,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.14351,
+    lng: -84.58597,
   },
   {
     id: "pantry_624837a4-4484-48e3-a61d-09e0884512ab",
@@ -879,6 +915,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.140269,
+    lng: -84.579664,
   },
   {
     id: "pantry_64149eea-89da-41c3-95fb-aaead141c1ad",
@@ -916,11 +954,13 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.102424,
+    lng: -84.551186,
   },
   {
     id: "pantry_c02d2cca-8589-4bce-8192-dc58887229aa",
     name: "Eden Chapel Food Pantry ",
-    addressLine: "150 Dahlia Avenue",
+    addressLine: "150 Dahlia Ave",
     city: "Cincinnati",
     state: "OH",
     zip: "45233",
@@ -1019,6 +1059,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.083993,
+    lng: -84.580474,
   },
   {
     id: "pantry_2656bbd9-21a6-4d56-aa75-296bd81f385a",
@@ -1053,6 +1095,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.20031,
+    lng: -84.53207,
   },
   {
     id: "pantry_119184bd-53f3-472c-8906-acf0994321b9",
@@ -1081,6 +1125,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.179344,
+    lng: -84.546155,
   },
   {
     id: "pantry_e3d1c746-234e-4fcb-8273-418008d6dea1",
@@ -1116,6 +1162,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.1522,
+    lng: -84.60126,
   },
   {
     id: "pantry_43b42e4a-264a-4d3b-be20-b9715e6cdcff",
@@ -1164,6 +1212,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.143908,
+    lng: -84.489823,
   },
   {
     id: "pantry_902bc6ee-25dd-4923-8ca5-089cfc322d56",
@@ -1198,6 +1248,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.15011,
+    lng: -84.49539,
   },
   {
     id: "pantry_4c09a1e2-7be2-41c4-94ad-bc0bfd5f0301",
@@ -1234,6 +1286,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.154637,
+    lng: -84.487149,
   },
   {
     id: "pantry_a1c2236c-bdfd-4eb1-8487-e409dcf65728",
@@ -1269,6 +1323,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.191697,
+    lng: -84.4063,
   },
   {
     id: "pantry_ba4633f7-5c3f-48cc-b9f4-2ab3a26124b0",
@@ -1304,6 +1360,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.180156,
+    lng: -84.432678,
   },
   {
     id: "pantry_afcf89a8-776a-449f-9f61-5caef2990257",
@@ -1367,6 +1425,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.227395,
+    lng: -84.457385,
   },
   {
     id: "pantry_f6e8e5e1-44d2-440a-8d3e-91aabe57e810",
@@ -1402,6 +1462,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.207595,
+    lng: -84.449002,
   },
   {
     id: "pantry_2caf9394-d694-430a-94c5-0fca4ff99b68",
@@ -1435,6 +1497,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.15574,
+    lng: -84.458072,
   },
   {
     id: "pantry_64a86e8e-51a3-4004-8f23-40e72e8f3382",
@@ -1470,6 +1534,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.168585,
+    lng: -84.461373,
   },
   {
     id: "pantry_0a0e9878-83a0-40cf-b0c8-878e05fbaab6",
@@ -1520,6 +1586,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.261006,
+    lng: -84.558607,
   },
   {
     id: "pantry_d8df0d93-c1a3-4b7d-9ad7-288a44f5057c",
@@ -1546,6 +1614,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.26722,
+    lng: -84.453687,
   },
   {
     id: "pantry_9ac47817-ef40-44d2-87e7-f89004fdcb7f",
@@ -1581,6 +1651,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.244448,
+    lng: -84.464537,
   },
   {
     id: "pantry_01a5ba24-aa18-4b55-8e82-46ff3eb6ac5a",
@@ -1650,6 +1722,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.234319,
+    lng: -84.549669,
   },
   {
     id: "pantry_e80ba230-648c-4515-ba26-684782ca8e9c",
@@ -1706,12 +1780,14 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.23249,
+    lng: -84.59147,
   },
   {
     id: "pantry_8522071f-3d5f-4f3a-9f38-b8e745a5cee4",
     name: "Fairfield Food Pantry ",
-    addressLine: "78 Donald Drive",
-    city: "Cincinnati",
+    addressLine: "78 Donald Dr",
+    city: "Fairfield",
     state: "OH",
     zip: "45014",
     neighborhood: "Fairfield",
@@ -1719,7 +1795,7 @@ export const PANTRIES: Pantry[] = [
     eligibility: {
       kind: "zip_restricted",
       zipCodes: ["45011", "45013", "45014", "45015"],
-      needProofOfResidency: false,
+      needProofOfResidency: true,
     },
     additionalServices: "",
     website: "http://www.fairfieldfoodpantry.org/",
@@ -1792,6 +1868,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.28142,
+    lng: -84.455544,
   },
   {
     id: "pantry_f50d77fe-1ccc-4225-b521-ec5ce4d5b18e",
@@ -1825,6 +1903,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.26001,
+    lng: -84.445095,
   },
   {
     id: "pantry_aebd707a-bced-463c-a6fc-f88bc3acb915",
@@ -1941,6 +2021,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.104193,
+    lng: -84.298188,
   },
   {
     id: "pantry_2399c570-dd9e-4152-8de3-5065fcf56c8c",
@@ -2018,6 +2100,8 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.087284,
+    lng: -84.379148,
   },
   {
     id: "pantry_5b42e193-fb42-4d42-8939-bbebaa1d8222",
@@ -2052,5 +2136,7 @@ export const PANTRIES: Pantry[] = [
       },
     ],
     lgbtVetted: false,
+    lat: 39.15641,
+    lng: -84.39534,
   },
 ];

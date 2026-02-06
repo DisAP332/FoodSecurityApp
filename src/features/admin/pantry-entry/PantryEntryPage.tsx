@@ -75,8 +75,9 @@ export function PantryEntryPage() {
       <header className="space-y-1">
         <h1 className="text-xl font-semibold">Pantry Data Entry</h1>
         <p className="text-sm text-slate-600">
-          Add/edit pantry entries, then download a JSON file that matches your
-          model.
+          This section is for adding new cities or updating pantry information!
+          If you want to add your own city, please fill this out and email us
+          the .JSON file to review and publish!
         </p>
       </header>
 

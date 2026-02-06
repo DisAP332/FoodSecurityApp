@@ -18,12 +18,12 @@ export function Navbar() {
 
         {/* Center Title */}
         <div className="text-base font-semibold tracking-wide">
-          Food Security Flow
+          Food Security Flow <span className="text-xs">(V1)</span>
         </div>
 
         {/* Right link */}
         <NavLink
-          to="/admin"
+          to="/dataEntryPage"
           className={({ isActive }) =>
             `text-sm font-medium ${
               isActive ? "text-black" : "text-slate-600 hover:text-black"

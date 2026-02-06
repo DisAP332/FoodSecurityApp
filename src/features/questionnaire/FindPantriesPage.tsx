@@ -22,7 +22,7 @@ export function FindPantriesPage() {
           onBack={() => setStep("location")}
         />
       )}
-      {import.meta.env.DEV && <PantryGeocodeTool />}
+      {/* {import.meta.env.DEV && <PantryGeocodeTool />} */}
     </main>
   );
 }

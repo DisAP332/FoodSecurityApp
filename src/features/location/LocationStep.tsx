@@ -5,6 +5,7 @@ import { AddressAutocomplete } from "./ui/AddressAutocomplete";
 import { validateLocation } from "./pipeline/Location.validation";
 import { normalizeLocation } from "./pipeline/Location.normalize";
 import type { QuestionnaireAction } from "./../questionnaire/questionnaire.reducer";
+import { AboutSection } from "../../components/AboutSection";
 
 type Props = {
   onNext: () => void;
@@ -87,8 +88,8 @@ export function LocationStep({ onNext, dispatch }: Props) {
         {browserMode && (
           <div className="space-y-3 rounded-md border p-3">
             <p className="text-sm text-slate-700">
-              Click below to request your device location. We’ll convert it to a
-              Cincinnati ZIP code.
+              Click below to request your device location. Please be in home zip
+              code area for eligibility accuracy.
             </p>
 
             <button
@@ -149,14 +150,19 @@ export function LocationStep({ onNext, dispatch }: Props) {
         )}
 
         {/* Proof of residency (simple for now) */}
-        <label className="mt-2 flex items-center gap-2 text-sm">
-          <input
-            type="checkbox"
-            checked={Boolean(state.hasProofOfResidency)}
-            onChange={(e) => setProofOfResidency(e.target.checked)}
-          />
-          I have proof of residency
-        </label>
+        <div>
+          <label className="mt-2 flex items-center gap-2 text-sm">
+            <input
+              type="checkbox"
+              checked={Boolean(state.hasProofOfResidency)}
+              onChange={(e) => setProofOfResidency(e.target.checked)}
+            />
+            I have proof of residency
+          </label>
+          <p className="text-xs text-slate-500">
+            (e.g. ID or mail with name and address)
+          </p>
+        </div>
       </LocationView>
 
       {errors.length > 0 && (
@@ -220,6 +226,7 @@ export function LocationStep({ onNext, dispatch }: Props) {
           Next
         </button>
       </div>
+      <AboutSection />
     </div>
   );
 }
