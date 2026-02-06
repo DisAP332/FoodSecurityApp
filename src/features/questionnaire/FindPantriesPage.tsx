@@ -2,6 +2,7 @@ import { useState } from "react";
 import { LocationStep } from "../location/LocationStep";
 import { ExportsStep } from "../exports/ExportsStep";
 import { useQuestionnaire } from "./useQuestionnaire";
+import { PantryGeocodeTool } from "../pantries/services/PantryGeocodeTool";
 
 type Step = "location" | "exports";
 
@@ -21,6 +22,7 @@ export function FindPantriesPage() {
           onBack={() => setStep("location")}
         />
       )}
+      {import.meta.env.DEV && <PantryGeocodeTool />}
     </main>
   );
 }

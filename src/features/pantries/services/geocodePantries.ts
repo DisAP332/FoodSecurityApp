@@ -1,13 +1,19 @@
 import type { Pantry } from "../types/pantry.types";
 import { forwardGeocodeAddress } from "./mapboxForwardGeocode";
 
-const CINCINNATI_BBOX = "-84.692637,39.039554,-84.260417,39.310213"; 
+const CINCINNATI_BBOX = "-84.692637,39.039554,-84.260417,39.310213";
 
 export async function geocodePantries(
   pantries: Pantry[],
-  opts: { accessToken: string; permanent?: boolean },
+  opts: {
+    accessToken: string;
+    permanent?: boolean;
+    bbox?: string;
+    delayMs?: number;
+  },
 ) {
   const out: Pantry[] = [];
+  const delayMs = opts.delayMs ?? 120;
 
   for (const p of pantries) {
     // Skip already-geocoded entries
@@ -16,31 +22,28 @@ export async function geocodePantries(
       continue;
     }
 
-    const query = `${p.addressLine}, ${p.city}, ${p.state} ${p.zip}`;
+    const query = `${p.addressLine}, ${p.city}, ${p.state} ${p.zip}`.trim();
 
     try {
       const point = await forwardGeocodeAddress(query, {
         accessToken: opts.accessToken,
-        bbox: CINCINNATI_BBOX,
+        bbox: opts.bbox ?? CINCINNATI_BBOX,
         permanent: opts.permanent ?? true,
       });
 
       if (!point) {
-        out.push(p); // keep, but no coords
-        continue;
+        out.push(p);
+      } else {
+        out.push({ ...p, lat: point.lat, lng: point.lng });
       }
 
-      out.push({
-        ...p,
-        lat: point.lat,
-        lng: point.lng,
-      });
-
-      // Small pause so you don't slam rate limits
-      await new Promise((r) => setTimeout(r, 120));
+      // avoid rate limits
+      await new Promise((r) => setTimeout(r, delayMs));
     } catch (e) {
-      console.error("Failed geocoding:", p.name, e);
+      console.error("Failed geocoding:", p.id, p.name, query, e);
       out.push(p);
+
+      // slightly longer delay after errors
       await new Promise((r) => setTimeout(r, 250));
     }
   }

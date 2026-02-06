@@ -4,10 +4,12 @@ import { geocodePantries, downloadJson } from "./geocodePantries";
 
 export function PantryGeocodeTool() {
   const token = import.meta.env.VITE_MAPBOX_TOKEN as string | undefined;
+  console.log(token);
 
   const [busy, setBusy] = useState(false);
   const [doneCount, setDoneCount] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [failed, setFailed] = useState<string[]>([]);
 
   const remaining = useMemo(() => {
     return PANTRIES.filter(
@@ -19,20 +21,29 @@ export function PantryGeocodeTool() {
     setError(null);
     setBusy(true);
     setDoneCount(null);
+    setFailed([]);
 
     try {
-      if (!token) throw new Error("Missing VITE_MAPBOX_TOKEN in .env");
+      if (!token) throw new Error("Missing VITE_MAPBOX_TOKEN in .env.local");
 
       const updated = await geocodePantries(PANTRIES, {
         accessToken: token,
-        permanent: true, // set false if you are NOT allowed to store results
+        permanent: true, // check with mapbox terms and services before full deploy
       });
 
       const withCoords = updated.filter(
         (p) => typeof p.lat === "number" && typeof p.lng === "number",
       ).length;
 
+      const failedList = updated
+        .filter(
+          (p) => !(typeof p.lat === "number" && typeof p.lng === "number"),
+        )
+        .map((p) => `${p.name} (${p.addressLine}, ${p.zip})`);
+
+      setFailed(failedList);
       setDoneCount(withCoords);
+
       downloadJson("pantries.geocoded.json", updated);
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
@@ -51,7 +62,8 @@ export function PantryGeocodeTool() {
 
       {!token && (
         <p className="text-sm text-red-700">
-          VITE_MAPBOX_TOKEN not found. Add it to your .env.local.
+          VITE_MAPBOX_TOKEN not found. Add it to your .env.local and restart
+          Vite.
         </p>
       )}
 
@@ -61,6 +73,23 @@ export function PantryGeocodeTool() {
         <p className="text-sm text-green-700">
           Done. Pantries with coordinates: <b>{doneCount}</b>. Download started.
         </p>
+      )}
+
+      {failed.length > 0 && (
+        <div className="rounded-md border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900">
+          <div className="font-medium">Couldn’t geocode ({failed.length}):</div>
+          <ul className="mt-2 list-disc pl-5">
+            {failed.slice(0, 25).map((x) => (
+              <li key={x}>{x}</li>
+            ))}
+          </ul>
+          {failed.length > 25 && (
+            <div className="mt-2 text-xs text-amber-800">
+              Showing first 25. (They’re still included in the downloaded JSON,
+              just missing lat/lng.)
+            </div>
+          )}
+        </div>
       )}
 
       <button
